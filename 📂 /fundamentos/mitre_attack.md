@@ -102,3 +102,37 @@ En nuestro marco interno, la priorización se define así:
 | 3  | Creación de túnel SSH hacia servidor externo  | Command & Control         | T1572 - Protocol Tunneling  | SSH                    | FIN8                | Alta              | C2 persistente no autorizado |
 | 4  | Modificación de reglas de firewall            | Defense Evasion           | T1562.004 - Disable or Modify Firewall | N/A   | N/A                 | Alta              | Intento de abrir puertos para acceso remoto |
 | 5  | Escaneo de vulnerabilidades internas          | Discovery                 | T1046 - Network Service Scanning | N/A              | Script kiddies      | Media             | Herramienta Nmap detectada en activo interno |
+
+## Ejemplo 4 – Incidentes en IoT / OT Industrial
+
+| Nº | Evidencia detectada                              | Táctica (MITRE)         | Técnica / ID                        | Subtécnica               | Actor/Grupo posible | Prioridad interna | Observaciones |
+|----|--------------------------------------------------|-------------------------|--------------------------------------|--------------------------|---------------------|-------------------|--------------|
+| 1  | Acceso remoto no autorizado a PLC                | Initial Access          | T0866 - Remote Services              | N/A                      | Xenotime            | **Alta**          | Riesgo de alteración de procesos críticos |
+| 2  | Cambio no programado en lógica de control        | Impact                  | T0831 - Modify Control Logic         | N/A                      | Desconocido         | Alta              | Modificación directa en línea de producción |
+| 3  | Escaneo de red Modbus/TCP                        | Reconnaissance          | T0842 - Network Sniffing             | N/A                      | Desconocido         | Media             | Indicios de reconocimiento interno |
+| 4  | Desactivación de alarmas de seguridad            | Defense Evasion         | T0853 - Service Stop                  | N/A                      | APT33               | Alta              | Posible preparación para sabotaje |
+| 5  | Uso de credenciales por defecto en dispositivos  | Initial Access          | T0812 - Valid Accounts               | Default Accounts         | Script kiddies      | Alta              | Configuración insegura detectada |
+
+---
+
+## Ejemplo 5 – Incidentes en Correo Corporativo (BEC / Phishing)
+
+| Nº | Evidencia detectada                              | Táctica (MITRE)         | Técnica / ID                        | Subtécnica               | Actor/Grupo posible | Prioridad interna | Observaciones |
+|----|--------------------------------------------------|-------------------------|--------------------------------------|--------------------------|---------------------|-------------------|--------------|
+| 1  | Suplantación de dominio en correos recibidos     | Initial Access          | T1586.002 - Domain Spoofing          | N/A                      | Silent Starling     | **Alta**          | Ataque de Business Email Compromise |
+| 2  | Uso de enlaces acortados hacia sitios maliciosos | Initial Access          | T1204.001 - User Execution           | Malicious Link           | Desconocido         | Alta              | Redirección a portal de phishing |
+| 3  | Creación de reglas automáticas para ocultar correos | Persistence           | T1114.003 - Email Forwarding Rule    | N/A                      | FIN4                | Alta              | Oculta comunicaciones legítimas |
+| 4  | Adjuntos con macros maliciosas                   | Execution               | T1566.001 - Spearphishing Attachment | N/A                      | APT28               | Alta              | Documento Word con VBA para descargar malware |
+| 5  | Acceso desde direcciones IP inusuales            | Initial Access          | T1078 - Valid Accounts               | N/A                      | Desconocido         | Media             | Posible compromiso de cuenta |
+
+---
+
+## Ejemplo 6 – Incidentes en Aplicaciones Web
+
+| Nº | Evidencia detectada                              | Táctica (MITRE)         | Técnica / ID                        | Subtécnica               | Actor/Grupo posible | Prioridad interna | Observaciones |
+|----|--------------------------------------------------|-------------------------|--------------------------------------|--------------------------|---------------------|-------------------|--------------|
+| 1  | Inyección SQL detectada en formulario de login   | Initial Access          | T1190 - Exploit Public-Facing Application | SQL Injection      | Script kiddies      | **Alta**          | Intento de extraer credenciales |
+| 2  | Explotación de vulnerabilidad XSS                | Execution               | T1059.007 - Cross Site Scripting     | N/A                      | Desconocido         | Media             | Robo de cookies de sesión |
+| 3  | Fuerza bruta contra panel de administración     | Credential Access       | T1110.001 - Password Guessing        | N/A                      | Desconocido         | Alta              | Intento reiterado de acceso no autorizado |
+| 4  | Escaneo de endpoints ocultos                     | Reconnaissance          | T1595 - Active Scanning              | N/A                      | Desconocido         | Baja              | Mapear superficie de ataque web |
+| 5  | Carga de archivo malicioso                        | Initial Access          | T1105 - Ingress Tool Transfer        | Webshell                 | APT41               | Alta              | Posible ejecución remota en servidor |
